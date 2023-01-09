@@ -52,24 +52,38 @@ $(function() {
       const downloadHandler = async (e)=>{
         e.preventDefault();
         const id = document.querySelector("#id").innerText;
+        console.log({id})
         const password = document.querySelector('#password').value;
         console.log(password)
         // const res = await axios.post(url,{password});
-        const res = await axios({
-           url,
-          method: 'POST',
-          responseType: 'blob',
-          body:{
-            password
-          } // important
-        });
-        const {data} = await axios.get(`/find/${id}`)
-        const filename = data.filename;
+       
+        try{
+          const res = await axios({
+            url,
+           method: 'POST',
+           responseType: 'blob',
+           body:{
+             password
+           } // important
+         });
+         console.log(res)
+        const response = await axios.get(`/find/${id}`);
+        const filename = response.data.filename;
+        if(res.status === 404){
+          const error = document.querySelector(".wrong");
+          console.dir(error);
+        }else{
           const urllink = window.URL.createObjectURL(new Blob([res.data]));
           const link = document.createElement('a');
           link.href = urllink;
           link.setAttribute('download', filename);
           document.body.appendChild(link);
           link.click();
-          window.history.back();
+          // window.history.back();
+        }
+        }catch(err){
+            const error = document.querySelector("#wrong");
+            error.style.display = "block";
+        }
+        
       }

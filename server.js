@@ -46,6 +46,9 @@ app.post("/upload",upload.single("file"),async function(req,res){
 
 app.get("/upload/:id",async function(req,res){
     const id  = req.params.id;
+    // if(req.header('error') == 'true'){
+
+    // }
     // http://localhost:3000/
     // console.log(req.headers)
     res.render("download",{fileLink: `http://${req.headers.host}/file/${id}`, fileid: id});
@@ -58,18 +61,20 @@ app.get("/find/:id",async (req,res) => {
 })
 
 async function handleDownload(req,res){
-    const id=req.params.id;
-    console.log(id);
+    const id = req.params.id;
+    console.log({id});
     console.log(req.body.password)
     const file= await File.findById(req.params.id);
     if(file.password != null){
         if(req.body.password == null)
         {
-            res.render("password",{id: id});
+            console.log("reached")
+            res.render("password",{id});
             return;
         }
         if(!(await bcrypt.compare(req.body.password,file.password)))
         {
+            
             res.render("password",{error: true});
             return;
         }
