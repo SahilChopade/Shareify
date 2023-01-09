@@ -35,4 +35,41 @@ $(function() {
     //   }
     });
   });
+
+
+  function copyToClipboard(element) {
+    var $temp = $("<input>");
+    $("body").append($temp);
+    $temp.val($(element).text()).select();
+    document.execCommand("copy");
+    $temp.remove();
+  }
+
+  
   console.log('Done2');
+  const url = window.location.href;
+  console.log(url);
+      const downloadHandler = async (e)=>{
+        e.preventDefault();
+        const id = document.querySelector("#id").innerText;
+        const password = document.querySelector('#password').value;
+        console.log(password)
+        // const res = await axios.post(url,{password});
+        const res = await axios({
+           url,
+          method: 'POST',
+          responseType: 'blob',
+          body:{
+            password
+          } // important
+        });
+        const {data} = await axios.get(`/find/${id}`)
+        const filename = data.filename;
+          const urllink = window.URL.createObjectURL(new Blob([res.data]));
+          const link = document.createElement('a');
+          link.href = urllink;
+          link.setAttribute('download', filename);
+          document.body.appendChild(link);
+          link.click();
+          window.history.back();
+      }

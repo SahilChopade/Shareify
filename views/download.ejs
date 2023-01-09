@@ -5,6 +5,7 @@
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Shareify-Share the Passion</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/styles.css" />
     <!-- Font Awesome Icons -->
   </head>
@@ -18,6 +19,8 @@
         <img class="download-img" src="/images/download-img.webp" alt="download-sd" />
         <div class="linkbox">
             <a class="link" href="<%= locals.fileLink %>"><%= locals.fileLink %></a>
+            <img onclick="copyToClipboard('.link')" style="width: 25px; cursor: pointer;" src="/images/copy.png" alt="copy">
+            <!-- <a href="https://www.flaticon.com/free-icons/copy" title="copy icons">Copy icons created by Freepik - Flaticon</a> -->
         </div>
         <div class="inputbox">
           <button class="download-btn"><a href="<%= locals.fileLink %>">Download</a></button>
@@ -30,7 +33,8 @@
         <form method="post" action=/send/<%= locals.fileid  %>
           <div class="inputbox">
             <input type="text" name="url" value="<%= locals.fileLink %>" style="display:none;">
-            <input type="text" name="receiversMail" placeholder="Receiver's Mail" />
+            <input type="text" name="receiversMail" />
+            <span>Receiver's Mail</span>
               <button class="Mail-btn btn" type="submit">Send Mail</button>
           </div>
         </form>
@@ -43,6 +47,8 @@
       integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
       crossorigin="anonymous"
     ></script>
+    
     <script src="/js/index.js"></script>
+   
   </body>
 </html>

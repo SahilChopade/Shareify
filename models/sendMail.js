@@ -4,25 +4,24 @@ const sendMail = async(req,res)=>{
     console.log({id})
     console.log(req.body);
     let testAccount = await nodemailer.createTestAccount();
-    console.log(testAccount)
+    // console.log(testAccount)
+
     const transporter = nodemailer.createTransport({
         host: 'smtp-relay.sendinblue.com',
         port: 587,
         auth: {
-            user: 'sahilchopade233@gmail.com',
-            pass: '7bBZOchYJs4SyfjH'
+            user: 'chopade.sahil02@gmail.com',
+            pass: 'xAE6b83rMCUvkK5R'
         }
     });
     // const transporter = nodemailer.createTransport({
     //     host: 'smtp.ethereal.email',
     //     port: 587,
-    //     secure: false,
     //     auth: {
-    //         user: 'marques.dicki64@ethereal.email',
-    //         pass: '985Phzd6uTQCFwS5ug'
+    //         user: 'korey.leuschke76@ethereal.email',
+    //         pass: 'ptvweE1yRpkAsPeyuu'
     //     }
     // });
-
     let info = await transporter.sendMail({
         from: `"Sahil Chopade 👻" <${testAccount.user}>`, // sender address
         to: `${req.body.receiversMail}`, // list of receivers
