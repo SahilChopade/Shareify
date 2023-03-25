@@ -10,16 +10,17 @@ const sendMail = async(req,res)=>{
         host: 'smtp-relay.sendinblue.com',
         port: 587,
         auth: {
-            user: 'chopade.sahil02@gmail.com',
-            pass: 'xAE6b83rMCUvkK5R'
+            user: 'sahilchopade233@gmail.com',
+            pass: '7bBZOchYJs4SyfjH'
         }
+
     });
     // const transporter = nodemailer.createTransport({
     //     host: 'smtp.ethereal.email',
     //     port: 587,
     //     auth: {
-    //         user: 'korey.leuschke76@ethereal.email',
-    //         pass: 'ptvweE1yRpkAsPeyuu'
+    //         user: 'roy.hermiston@ethereal.email',
+    //         pass: 'xuzXwQSANpW6MyKkQX'
     //     }
     // });
     let info = await transporter.sendMail({
