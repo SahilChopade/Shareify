@@ -46,11 +46,7 @@ app.post("/upload",upload.single("file"),async function(req,res){
 
 app.get("/upload/:id",async function(req,res){
     const id  = req.params.id;
-    // if(req.header('error') == 'true'){
-
-    // }
-    // http://localhost:3000/
-    // console.log(req.headers)
+    console.log(`http://${req.headers.host}/file/${id}`);
     res.render("download",{fileLink: `http://${req.headers.host}/file/${id}`, fileid: id});
 })
 
@@ -88,6 +84,9 @@ async function handleDownload(req,res){
     // res.redirect("/")
     // res.redirect(`/upload/${id}`)
 }
+
+ 
+
 
 app.listen(process.env.PORT,function(){
     console.log("Server is running at port 3000..");

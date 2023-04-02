@@ -9,15 +9,14 @@
     <link rel="stylesheet" href="/css/styles.css" />
     <!-- Font Awesome Icons -->
   </head>
-
   <body>
     <img class="logo" src="/images/logo.png" alt="Shareify-Share" />
     <% if(locals.fileLink != null){ %>
     <section class="download-container">
       <div class="center">
         <h1>Your File has Been Uploaded</h1>
-        <img class="download-img" src="/images/download-img.webp" alt="download-sd" />
-        <div class="linkbox">
+        <img class="download-img" id="qr" src="http://api.qrserver.com/v1/create-qr-code/?data=<%=locals.fileLink%>!&size=100x100" alt="download-sd" />
+        <div class="linkbox"> 
             <a class="link" href="<%= locals.fileLink %>"><%= locals.fileLink %></a>
             <img onclick="copyToClipboard('.link')" style="width: 25px; cursor: pointer;" src="/images/copy.png" alt="copy">
             <!-- <a href="https://www.flaticon.com/free-icons/copy" title="copy icons">Copy icons created by Freepik - Flaticon</a> -->
